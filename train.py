@@ -275,14 +275,16 @@ if __name__ == '__main__':
 
     # NOTE These params are only applicable to pre-specified model architecture.
     # Split meta-training and meta-testing characters
+    args.data_dir='miniimagenet'
     if 'Omniglot' in args.data_dir and params.dataset == 'Omniglot':
         params.in_channels = 1
         (meta_train_classes, meta_val_classes,
          meta_test_classes) = split_omniglot_characters(
              args.data_dir, params.SEED)
         task_type = OmniglotTask
-    elif ('miniImageNet' in args.data_dir or
+    elif ('miniimagenet' in args.data_dir or
           'tieredImageNet' in args.data_dir) and params.dataset == 'ImageNet':
+        print(args.data_dir)
         params.in_channels = 3
         (meta_train_classes, meta_val_classes,
          meta_test_classes) = load_imagenet_images(args.data_dir)
